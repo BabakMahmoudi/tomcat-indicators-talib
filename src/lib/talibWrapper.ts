@@ -1,4 +1,4 @@
-import talib from 'talib';
+import talib from 'talib'
 
 class TalibWrapper {
   async execute(inidicatorParameters) {

@@ -1,7 +1,10 @@
-import { CandleStickData, Intervals } from "../common"
-import { IFilter } from "../pipes"
+import tomcat from '@gostarehnegar/tomcat'
 
-import { IIndicator } from "./IIndicator"
+type CandleStickData = tomcat.Domain.Base.CandleStickData
+type Intervals = tomcat.Domain.Base.Intervals
+type IIndicator = tomcat.Domain.Indicators.IIndicator
+type IFilter = tomcat.Domain.Pipes.IFilter
+
 import { TalibWrapperEx } from "./talibWrapper"
 
 export const RSI = (period = 14, maxCount = 200, interval: Intervals = '4h'): IIndicator => {

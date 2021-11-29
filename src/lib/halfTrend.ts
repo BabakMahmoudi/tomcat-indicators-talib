@@ -1,9 +1,12 @@
-import { CandleStickCollection, CandleStickData, Intervals } from "../common"
-import { IFilter } from "../pipes"
+import tomcat from '@gostarehnegar/tomcat'
+type Intervals = tomcat.Domain.Base.Intervals
+type IIndicator = tomcat.Domain.Indicators.IIndicator
+type IFilter = tomcat.Domain.Pipes.IFilter
+type CandleStickData = tomcat.Domain.Base.CandleStickData
+type CandleStickCollection = tomcat.Domain.Base.CandleStickCollection
 
 import { TalibWrapperEx } from "./talibWrapper"
 
-import { IIndicator } from "."
 export const HTSignal = (amplitude = 2, channelDeviation = 2, maxCount = 200, interval: Intervals = '4h'): IIndicator => {
     return {
         handler: null,

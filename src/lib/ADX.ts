@@ -1,8 +1,11 @@
-import { CandleStickCollection, CandleStickData, Intervals } from "../common"
-import utils from "../common/Domain.Utils"
-import { IFilter } from "../pipes"
+import tomcat from '@gostarehnegar/tomcat'
 
-import { IIndicator } from "./IIndicator"
+type CandleStickData = tomcat.Domain.Base.CandleStickData
+type Intervals = tomcat.Domain.Base.Intervals
+type IIndicator = tomcat.Domain.Indicators.IIndicator
+type IFilter = tomcat.Domain.Pipes.IFilter
+
+
 import { TalibWrapperEx } from "./talibWrapper"
 
 export const ADX = (period = 14, maxCount = 200, interval: Intervals = '4h'): IIndicator => {
@@ -25,13 +28,13 @@ export const ADX = (period = 14, maxCount = 200, interval: Intervals = '4h'): II
   }
 }
 export class CandleStickCollectionScaler {
-  public oneMinuteCandles: CandleStickCollection = new CandleStickCollection([])
-  public candles: CandleStickCollection = new CandleStickCollection([])
+  public oneMinuteCandles = new tomcat.Domain.Base.CandleStickCollection([])
+  public candles = new tomcat.Domain.Base.CandleStickCollection([])
   private _interval: number
   constructor(public interval: Intervals, public maxCount = 200) {
-    this._interval = utils.toMinutes(interval) * 60 * 1000
+    this._interval = tomcat.utils.toMinutes(interval) * 60 * 1000
   }
-  push(candle: CandleStickData, cb: (onMinutes: CandleStickCollection, lastCandle: CandleStickData) => void = null) {
+  push(candle: CandleStickData, cb: (onMinutes: tomcat.Domain.Base.CandleStickCollection, lastCandle: CandleStickData) => void = null) {
     if (this.interval != '1m') {
       if (this.oneMinuteCandles.firstCandle && (candle.openTime - this.oneMinuteCandles.firstCandle.openTime >= this._interval)) {
         if (cb) {

@@ -1,10 +1,11 @@
-import { CandleStickData, Intervals } from "../common"
-import { IFilter } from "../pipes"
+import tomcat from '@gostarehnegar/tomcat'
+type Intervals = tomcat.Domain.Base.Intervals
+type IIndicator = tomcat.Domain.Indicators.IIndicator
+type IFilter = tomcat.Domain.Pipes.IFilter
+type CandleStickData = tomcat.Domain.Base.CandleStickData
 
-import { IIndicator } from "./IIndicator"
+
 import { TalibWrapperEx } from "./talibWrapper"
-
-
 export const SAR = (startValue = 0.02, acceleration = 0.005, maxAcceleration = 0.2, maxCount = 200, interval: Intervals = "4h"): IIndicator => {
   const id = `SAREXT-${startValue}-${acceleration}-${maxAcceleration}-${maxCount}-${interval}`
   return {

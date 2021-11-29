@@ -17,6 +17,14 @@
  * something();
  * ```
  */
+
+interface talib {
+  execute(a, cb: (err, result) => void);
+}
+declare module 'talib' {
+  const whatever: talib;
+  export = whatever;
+}
 declare module 'module-name' {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const whatever: any;
